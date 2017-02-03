@@ -1,0 +1,99 @@
+<style>
+    .btn-choice-wrapper {
+
+    }
+
+    .btn-choice {
+        display: block;
+        margin: 0 auto;
+
+        font-size: 20px;
+    }
+</style>
+
+<div class="centered" style="width:100px;">
+    <strong>Oh no!</strong>
+    <br/>
+    Did you close the download?
+    <br/>
+    <button class="btn btn-success" ng-click="showDownloadModal()">Open it again!</button>
+</div>
+
+
+<div ng-init="showDownloadModal()" id="downloadModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">{{download.params.project ? download.params.project : ""}}
+                    <small>{{download.params.version ? download.params.version : ""}}</small>
+                </h1>
+            </div>
+
+            <div class="modal-body" style="font-size: 18px">
+                <strong>Hi!</strong> Thanks for downloading!
+                <br/>
+                Since you're downloading a free project, you have <strong>3 options:</strong>
+
+                <div>
+                    <br/>
+                    <hr/>
+                    <br/>
+                    <div class="btn-choice-wrapper">
+                        <button class="btn btn-success btn-choice choice-adfly" ng-disabled="!download.url.adfly" ng-click="download.go.adfly()">Download for free</button>
+                        <span class="help-block">via adf.ly</span>
+                    </div>
+
+                    <p>
+                        This is the easiest and cheapest way to support me, by just waiting 5 seconds for your download without having to pay anything!
+                        <br/>
+                        <strong>Doesn't that sound great?</strong>
+                    </p>
+                </div>
+
+                <div>
+                    <br/>
+                    <hr/>
+                    <br/>
+                    <div class="btn-choice-wrapper">
+                        <div class="input-group" style="width: 200px; margin: 0 auto;">
+                            <div class="input-group-btn">
+                                <button class="btn btn-success btn-choice choice-donate" style="background-color: orange;" ng-disabled="!download.url.donate" ng-click="download.go.donate()">Donate</button>
+                            </div>
+                            <input class="form-control" type="number" placeholder="Amount" value="1" style="font-size: 20px; height: 42px;" ng-model="download.donateAmount">
+                            <span class="input-group-addon" style="font-size: 20px;">€</span>
+                        </div>
+                        <span class="help-block">and download afterwards</span>
+                    </div>
+
+                    <p>
+                        <strong>Of course you can also donate directly!</strong>
+                        <br/>
+                        I appreciate any amount you'd like to donate, even if it's just 1€ &lt3
+                    </p>
+                </div>
+
+                <div>
+                    <br/>
+                    <hr/>
+                    <br/>
+                    <div class="btn-choice-wrapper">
+                        <button class="btn btn-danger btn-choice choice-direct" ng-disabled="!download.url.direct" ng-click="download.go.direct()">Just go for it!</button>
+                        <span class="help-block">No detours here</span>
+                    </div>
+
+                    <p>
+                        You obviously can also just directly download the project, without supporting me financially.<br/>
+                        I won't hate you for it, however <strong>I'd appreciate a change of mind if you enjoy your download ;)</strong>
+                    </p>
+                </div>
+
+                <br/>
+            </div>
+            <div class="modal-footer">
+                <span class="text-muted">
+                    Downloading from {{download.provider.friendlyName}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
