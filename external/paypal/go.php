@@ -10,7 +10,7 @@ $provider = $_REQUEST["i_provider"];
 $project = $_REQUEST["i_project"];
 $version = $_REQUEST["i_version"];
 
-$item = $url;
+$item = $project . "/" . $version;
 //$item = base64_encode($url);
 ?>
 <html>
