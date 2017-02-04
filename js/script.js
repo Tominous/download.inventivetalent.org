@@ -17,6 +17,7 @@ downloadApp.config(function ($routeProvider, $locationProvider) {
 });
 
 downloadApp.controller("parentController", ["$scope", function ($scope) {
+    $scope.pageTitle = "Download";
 }])
 
 downloadApp.controller("downloadController", ["$scope", "$location", "$routeParams", "$http", "$timeout", function ($scope, $location, $routeParams, $http, $timeout) {
@@ -76,6 +77,10 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
 
     // Generate URLs
     $timeout(function () {
+        // update title
+        $scope.pageTitle = "Download " + $scope.download.params.project + " " + $scope.download.params.version;
+        console.log($scope.pageTitle);
+
         $scope.download.url.direct = function () {
             return $scope.download.provider.urlFormat
                 .replace(":project", $scope.download.params.project)

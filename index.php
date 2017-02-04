@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="downloadApp" ng-controller="parentController">
 <head>
-    <title>Download</title>
+    <title ng-bind="pageTitle">Download</title>
 
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
