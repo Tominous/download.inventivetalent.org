@@ -34,6 +34,7 @@ if (!isset($url) || empty($url)) {
     ));
     exit();
 }
+$url = base64_decode($url);
 
 $shortened = adfly($url, "KEY", "UID", "DOMAIN");
 echo json_encode(array(

@@ -98,12 +98,12 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
         };
 
         $scope.download.url.donate = function () {
-            return "https://download.inventivetalent.org/external/paypal/go?url=" + $scope.download.url.direct() + "&amount=" + $scope.download.donateAmount;
+            return "https://download.inventivetalent.org/external/paypal/go?url=" + btoa($scope.download.url.direct()) + "&amount=" + $scope.download.donateAmount;
         };
 
         console.log("Generating adfly link...");
         $http({
-            url: "/external/adfly/make.php?url=" + $scope.download.url.direct()
+            url: "/external/adfly/make.php?url=" + btoa($scope.download.url.direct())
         }).then(function (response) {
             $timeout(function () {
                 $scope.download.url.adfly = function () {
