@@ -28,6 +28,9 @@ $item = $url;
     <!-- <input type="hidden" name="lc" value="US"> -->
     <!-- <input type="hidden" name="cancel_return" value="https://donation.inventivetalent.org/paypal/cancel"> -->
     <!-- <input type="hidden" name="amount" value="1.00"> -->
+
+    You should be redirected automatically. If not, please
+    <button type="submit">click here</button>
 </form>
 
 <script>
