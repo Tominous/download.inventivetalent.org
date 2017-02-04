@@ -34,13 +34,13 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
         },
         go: {
             direct: function () {
-                window.location = $scope.download.url.direct;
+                window.location = $scope.download.url.direct();
             },
             adfly: function () {
-                window.location = $scope.download.url.adfly;
+                window.location = $scope.download.url.adfly();
             },
             donate: function () {
-                window.location = $scope.download.url.donate;
+                window.location = $scope.download.url.donate();
             }
         },
         donateAmount: 1
@@ -76,18 +76,24 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
 
     // Generate URLs
     $timeout(function () {
-        $scope.download.url.direct = $scope.download.provider.urlFormat
-            .replace(":project", $scope.download.params.project)
-            .replace(":version", $scope.download.params.version);
+        $scope.download.url.direct = function () {
+            return $scope.download.provider.urlFormat
+                .replace(":project", $scope.download.params.project)
+                .replace(":version", $scope.download.params.version);
+        };
 
-        $scope.download.url.donate = "https://download.inventivetalent.org/external/paypal/go?url=" + $scope.download.url.direct + "&amount=" + $scope.download.donateAmount;
+        $scope.download.url.donate = function () {
+            return "https://download.inventivetalent.org/external/paypal/go?url=" + $scope.download.url.direct() + "&amount=" + $scope.download.donateAmount;
+        };
 
         console.log("Generating adfly link...");
         $http({
             url: "/external/adfly/make.php?url=" + $scope.download.url.direct
         }).then(function (response) {
             $timeout(function () {
-                $scope.download.url.adfly = response.data.shortened;
+                $scope.download.url.adfly = function () {
+                    return response.data.shortened;
+                };
             });
         })
     }, 1000);
