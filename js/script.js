@@ -48,6 +48,10 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
     if (!$scope.download.params.version) {
         $scope.download.params.version = "latest";
     }
+    $scope.$watch("download.donateAmount", function (val, old) {
+        $scope.download.donateAmount = parseFloat(val);
+        console.log($scope.download.donateAmount)
+    })
     $scope.providers = {
         "GitHub": {
             keys: [
