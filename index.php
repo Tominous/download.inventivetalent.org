@@ -3,6 +3,8 @@
 <head>
     <title ng-bind="pageTitle">Download</title>
 
+    <link id="favicon" rel="shortcut icon" type="image/png" href="/favicon_full.png"/>
+
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <meta name=viewport content="width=device-width, initial-scale=1">
