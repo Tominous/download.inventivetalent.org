@@ -88,7 +88,7 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
 
         console.log("Generating adfly link...");
         $http({
-            url: "/external/adfly/make.php?url=" + $scope.download.url.direct
+            url: "/external/adfly/make.php?url=" + $scope.download.url.direct()
         }).then(function (response) {
             $timeout(function () {
                 $scope.download.url.adfly = function () {
