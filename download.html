@@ -55,14 +55,21 @@
                     <hr/>
                     <br/>
                     <div class="btn-choice-wrapper">
-                        <div class="input-group" style="width: 200px; margin: 0 auto;">
-                            <div class="input-group-btn">
-                                <button class="btn btn-success btn-choice choice-donate" style="background-color: orange;" ng-disabled="!download.url.donate" ng-click="download.go.donate()">Donate</button>
+                        <div ng-if="download.params.meta !== 'donateSuccess'">
+                            <div class="input-group" style="width: 200px; margin: 0 auto;">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-success btn-choice choice-donate" style="background-color: orange;" ng-disabled="!download.url.donate" ng-click="download.go.donate()">Donate</button>
+                                </div>
+                                <input class="form-control" type="number" placeholder="Amount" value="1" style="font-size: 20px; height: 42px;" ng-model="download.donateAmount">
+                                <span class="input-group-addon" style="font-size: 20px;">€</span>
                             </div>
-                            <input class="form-control" type="number" placeholder="Amount" value="1" style="font-size: 20px; height: 42px;" ng-model="download.donateAmount">
-                            <span class="input-group-addon" style="font-size: 20px;">€</span>
+                            <span class="help-block">and download afterwards</span>
                         </div>
-                        <span class="help-block">and download afterwards</span>
+                        <div ng-if="download.params.meta === 'donateSuccess'">
+                            <strong>Thanks for donating!</strong>
+                            <button class="btn btn-success btn-choice choice-adfly" style="background-color: orange;" ng-disabled="!download.url.direct" ng-click="download.go.direct()">Download now</button>
+                            <span class="help-block">&lt;3</span>
+                        </div>
                     </div>
 
                     <p>

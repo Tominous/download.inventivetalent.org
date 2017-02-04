@@ -1,3 +1,7 @@
 <?php
-//TODO: return to the download page
-header("Location: https://inventivetalent.org");
+
+$provider = $_REQUEST["provider"];
+$project = $_REQUEST["project"];
+$version = $_REQUEST["version"];
+
+header("Location: https://download.inventivetalent.org/$provider/$project/$version/donationCancel");

@@ -6,6 +6,10 @@ if (!isset($url) || empty($url)) {
     exit();
 }
 
+$provider = $_REQUEST["i_provider"];
+$project = $_REQUEST["i_project"];
+$version = $_REQUEST["i_version"];
+
 $item = $url;
 //$item = base64_encode($url);
 ?>
@@ -23,8 +27,8 @@ $item = $url;
     ?>
     <input type="hidden" name="business" value="donation@inventivetalent.org">
     <input type="hidden" name="currency_code" value="EUR">
-    <input type="hidden" name="return" value="https://download.inventivetalent.org/external/paypal/success.php?item=<?php echo $item; ?>">
-    <input type="hidden" name="return_cancel" value="https://download.inventivetalent.org/external/paypal/cancel.php?item=<?php echo $item; ?>">
+    <input type="hidden" name="return" value="https://download.inventivetalent.org/external/paypal/success.php?item=<?php echo $item; ?>&provider=<?php echo $provider; ?>&project=<?php echo $project; ?>&version=<?php echo $version; ?>">
+    <input type="hidden" name="return_cancel" value="https://download.inventivetalent.org/external/paypal/cancel.php?item=<?php echo $item; ?>&provider=<?php echo $provider; ?>&project=<?php echo $project; ?>&version=<?php echo $version; ?>">
     <!-- <input type="hidden" name="lc" value="US"> -->
     <!-- <input type="hidden" name="cancel_return" value="https://donation.inventivetalent.org/paypal/cancel"> -->
     <!-- <input type="hidden" name="amount" value="1.00"> -->

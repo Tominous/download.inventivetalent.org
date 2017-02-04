@@ -8,7 +8,7 @@ downloadApp.config(function ($routeProvider, $locationProvider) {
             templateUrl: "empty.html"
         })
         .when("/:provider/:project", {redirectTo: "/:provider/:project/latest"})
-        .when("/:provider/:project/:version", {
+        .when("/:provider/:project/:version/:meta?", {
             templateUrl: "download.html",
             controller: "downloadController"
         });
