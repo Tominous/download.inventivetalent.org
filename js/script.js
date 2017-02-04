@@ -25,8 +25,8 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
     $scope.download = {
         params: $routeParams,
         provider: {
-            friendlyName: "",
-            urlFormat: ""
+            friendlyName: undefined,
+            urlFormat: undefined
         },
         url: {
             direct: "",
@@ -76,6 +76,10 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
             }
         })
     });
+    console.info("Download Provider is " + $scope.download.provider.friendlyName);
+    if (!$scope.download.provider.friendlyName || !$scope.download.provider.urlFormat) {
+        alert("Unknown Download Provider");
+    }
 
     $scope.showDownloadModal = function () {
         $("#downloadModal").modal("show")
