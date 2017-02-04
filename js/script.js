@@ -60,6 +60,12 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
                 "github"
             ],
             urlFormat: "https://github.com/InventivetalentDev/:project/releases/:version"
+        },
+        "InventiveDownloads": {
+            keys: [
+                "idl"
+            ],
+            urlFormat: "https://dl.inventivetalent.org/plugin/?plugin=:project&version=:version"
         }
     };
     $.each($scope.providers, function (friendlyName, provider) {
