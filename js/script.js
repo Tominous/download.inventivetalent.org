@@ -101,5 +101,5 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
                 };
             });
         })
-    }, 1000);
+    }, 500);
 }]);
