@@ -116,4 +116,10 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
             });
         })
     }, 500);
+
+    $scope.submitIssue = function () {
+        var url = "https://github.com/InventivetalentDev/download.inventivetalent.org/issues/new?title=";
+        url += encodeURI("Download Issue (" + window.location + ")");
+        window.open(url, "_blank");
+    };
 }]);
