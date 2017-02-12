@@ -44,7 +44,7 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
                 window.location = $scope.download.url.donate();
             }
         },
-        donateAmount: 1
+        donateAmount: Math.floor(Math.random() * 20) + 1
     };
     if (!$scope.download.params.version) {
         $scope.download.params.version = "latest";
