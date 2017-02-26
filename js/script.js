@@ -59,7 +59,8 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
                 }, 250);
             }
         },
-        donateAmount: Math.floor(Math.random() * 20) + 1
+        donateAmount: Math.floor(Math.random() * 20) + 1,
+        referrerId: undefined
     };
     if (!$scope.download.params.version) {
         $scope.download.params.version = "latest";
@@ -142,6 +143,19 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
                 };
             });
         })
+
+        // Load info based on referrer
+        if (document.referrer && document.referrer.startsWith("https://www.spigotmc.org/resources/")) {
+            var substr = document.referrer.substring("https://www.spigotmc.org/resources/".length);
+            var pathSplit = substr.split("/");// in case the user came from the version history, etc.
+            var resourceString = pathSplit[0];
+            var split = resourceString.split(".");
+
+            var resourceId = parseInt(split[1]);
+            console.info("Detected referrer resource #" + resourceId + " (" + split[0] + ")");
+            $scope.download.referrerId = resourceId;
+        }
+
     }, 500);
 
     $scope.submitIssue = function () {
