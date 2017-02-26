@@ -35,13 +35,28 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
         },
         go: {
             direct: function () {
-                window.location = $scope.download.url.direct();
+                $scope.trackDownloadClick("direct");
+                $timeout(function () {
+                    window.location = $scope.download.url.direct();
+                }, 250);
             },
             adfly: function () {
-                window.location = $scope.download.url.adfly();
+                $scope.trackDownloadClick("adfly");
+                $timeout(function () {
+                    window.location = $scope.download.url.adfly();
+                }, 250);
             },
             donate: function () {
-                window.location = $scope.download.url.donate();
+                $scope.trackDownloadClick("donate");
+                $timeout(function () {
+                    window.location = $scope.download.url.donate();
+                }, 250);
+            },
+            donate_direct: function () {
+                $scope.trackDownloadClick("donate-direct");
+                $timeout(function () {
+                    window.location = $scope.download.url.direct();
+                }, 250);
             }
         },
         donateAmount: Math.floor(Math.random() * 20) + 1
@@ -84,6 +99,18 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
     $scope.showDownloadModal = function () {
         $("#downloadModal").modal("show")
     }
+
+    $scope.trackDownloadClick = function (type) {
+        if (typeof ga !== 'undefined') {
+            ga("send", "event",
+                "Project Download", type, window.location, undefined, {
+                    "nonInteraction": 1
+                });
+        } else if (typeof _gaq !== 'undefined') {
+            _gaq.push(['_trackEvent',
+                "Project Download", type, window.location, undefined, true]);
+        }
+    };
 
     // Generate URLs
     $timeout(function () {
