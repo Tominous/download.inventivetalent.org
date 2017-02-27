@@ -103,13 +103,17 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
 
     $scope.trackDownloadClick = function (type) {
         if (typeof ga !== 'undefined') {
+            console.log("Tracking " + type + " download via 'ga'")
             ga("send", "event",
-                "Project Download", type, window.location, undefined, {
+                "project_download", "click", type, undefined, {
                     "nonInteraction": 1
                 });
         } else if (typeof _gaq !== 'undefined') {
+            console.log("Tracking " + type + " download via '_gaq'")
             _gaq.push(['_trackEvent',
-                "Project Download", type, window.location, undefined, true]);
+                "project_download", "click", type, undefined, true]);
+        } else {
+            console.warn("No GoogleAnalytics tracking APIs available")
         }
     };
 
