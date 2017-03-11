@@ -24,7 +24,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <img class="img-responsive pull-right" src="" ng-if="download.referrerId" ng-src="{{'https://i.spiget.org/' + download.referrerId}}" style="max-width: 200px;max-height: 200px;box-shadow: rgba(0,0,0,0.5) 4px 4px 8px;">
+                <img class="img-responsive pull-right" src="" ng-if="download.referrerId && download.resourceIconData" ng-src="data:image/png;base64,{{download.resourceIconData}}" style="max-width: 200px;max-height: 200px;box-shadow: rgba(0,0,0,0.5) 4px 4px 8px;">
                 <h1 class="modal-title">{{download.params.project ? download.params.project : ""}}</h1>
                 <h2 class="text-muted" style="line-height: 0">{{download.params.version ? download.params.version : ""}}</h2>
             </div>

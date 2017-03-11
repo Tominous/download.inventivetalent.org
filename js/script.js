@@ -60,7 +60,8 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
             }
         },
         donateAmount: Math.floor(Math.random() * 20) + 1,
-        referrerId: undefined
+        referrerId: undefined,
+        resourceIconData: ""
     };
     if (!$scope.download.params.version) {
         $scope.download.params.version = "latest";
@@ -158,6 +159,12 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
             var resourceId = parseInt(split[1]);
             console.info("Detected referrer resource #" + resourceId + " (" + split[0] + ")");
             $scope.download.referrerId = resourceId;
+            $http({
+                url: "https://api.spiget.org/v2/resources/" + resourceId + "/icon/raw",
+                headers: {"Spiget-User-Agent": "download.inventivetalent.org"}
+            }).then(function (response) {
+                $scope.download.resourceIconData = response.data;
+            })
         }
 
     }, 500);
