@@ -61,7 +61,8 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
         },
         donateAmount: Math.floor(Math.random() * 20) + 1,
         referrerId: undefined,
-        resourceIconData: ""
+        resourceIconData: "",
+        adflyFailed: false
     };
     if (!$scope.download.params.version) {
         $scope.download.params.version = "latest";
@@ -147,6 +148,10 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
                     return response.data.shortened;
                 };
             });
+        }, function (error) {
+            if (error.status == -1) {//Blocked
+                $scope.adflyFailed = true;
+            }
         })
 
         // Load info based on referrer
