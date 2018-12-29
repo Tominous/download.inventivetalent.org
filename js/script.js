@@ -149,9 +149,8 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
                 };
             });
         }, function (error) {
-            if (error.status == -1) {//Blocked
-                $scope.adflyFailed = true;
-            }
+            console.warn(error);
+            $scope.adflyFailed = true;
         })
 
         // Load info based on referrer

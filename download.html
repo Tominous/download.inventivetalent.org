@@ -41,7 +41,7 @@
                     <div class="btn-choice-wrapper">
                         <button class="btn btn-success btn-choice choice-adfly" ng-disabled="!download.url.adfly" ng-click="download.go.adfly()">Download for free</button>
                         <span class="help-block" ng-if="!adflyFailed">via adf.ly</span>
-                        <span class="help-block" ng-if="adflyFailed">Please disable your ad blocker</span>
+                        <span class="help-block" style="color: #ff4848;" ng-if="adflyFailed">Please disable your ad blocker to download via adf.ly</span>
                     </div>
 
                     <p>
