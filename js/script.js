@@ -21,7 +21,8 @@ downloadApp.controller("parentController", ["$scope", function ($scope) {
 }])
 
 downloadApp.controller("downloadController", ["$scope", "$location", "$routeParams", "$http", "$timeout", function ($scope, $location, $routeParams, $http, $timeout) {
-    console.log($routeParams)
+    console.log($routeParams);
+    $scope.patreonLoggedIn = false;
     $scope.download = {
         params: $routeParams,
         provider: {
@@ -139,6 +140,23 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
                 "&i_version=" + $scope.download.params.version;
         };
 
+        console.log("Checking Patreon status...");
+        if (document.cookie.indexOf("patreon_id") !== -1) {
+            $scope.patreonLoggedIn = true;
+        }
+        $("#patreon-login-link").attr("href", "https://download.inventivetalent.org/patreon/redirect.php?provider=" + $scope.download.params.provider + "&plugin=" + $scope.download.params.project + "&version=" + $scope.download.params.version);
+        $http({
+            url: "/patreon/check.php"
+        }).then(function (response) {
+            if (response.status === 200 && "true" === response.data) {
+                $scope.patreonLoggedIn = true;
+                $scope.trackDownloadClick("patreon-auto");
+                window.location = $scope.download.direct();
+            } else {
+                $scope.patreonLoggedIn = false;
+            }
+        });
+
         console.log("Generating adfly link...");
         $http({
             url: "/external/adfly/make.php?url=" + btoa($scope.download.url.direct())
@@ -151,7 +169,8 @@ downloadApp.controller("downloadController", ["$scope", "$location", "$routePara
         }, function (error) {
             console.warn(error);
             $scope.adflyFailed = true;
-        })
+        });
+
 
         // Load info based on referrer
         if (document.referrer && document.referrer.startsWith("https://www.spigotmc.org/resources/")) {

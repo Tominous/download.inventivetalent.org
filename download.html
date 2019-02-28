@@ -61,9 +61,12 @@
                     <hr/>
                     <br/>
                     <div class="btn-choice-wrapper">
-                        <div>
+                        <div id="patreon-container" ng-hide="patreonLoggedIn">
                             <!-- Patreon -->
                             <a href="https://www.patreon.com/bePatron?u=554075" data-patreon-widget-type="become-patron-button">Become a Patron!</a>
+                            Already a Patron? <a href="/patreon/redirect.php" target="_self" id="patreon-login-link">Log In!</a>
+                            <br/>
+                            <br/>
                         </div>
                         <div ng-if="download.params.meta !== 'donationSuccess'">
                             <div class="input-group" style="width: 200px; margin: 0 auto;">
@@ -83,9 +86,9 @@
                     </div>
 
                     <p>
-                        <strong>Of course you can also donate directly!</strong>
+                        <strong>You can also support me on Patreon or donate directly!</strong>
                         <br/>
-                        I appreciate any amount you'd like to donate, even if it's just 1€ &lt3
+                        I appreciate any amount you'd like to pledge/donate, even if it's just 1€ &lt3
                     </p>
                 </div>
 
